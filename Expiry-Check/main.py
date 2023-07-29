@@ -20,15 +20,17 @@ class main():
 
         while(user_input := int(input(MENU_PROMPT))) != 4:
             if user_input == 1:
-                database.display(self.connection)
+                items = self.database.display()
+                for item in items:
+                    print(item)
             elif user_input == 2:
                 name = input("Enter Name of item: ")
-                year = int(input("Enter Year: "))
-                month = int(input("Enter Month: "))
-                day = int(input("Enter Day: "))
-                date = "-".join(year,month,date)
-                print(date)
-                #database.add(name,date)
+                year = input("Enter Year: ")
+                month = input("Enter Month: ")
+                day = input("Enter Day: ")
+                date = "-".join((year,month,day))
+                self.database.add(name,date)
+                print("Item Added: "+ name)
 
             
 if __name__ == "__main__":
