@@ -30,11 +30,25 @@ class expiry():
 
     
     def display(self):
+
         print("Here are the following items that need to be used, in order.\n")
+
         self.data['Expiry_Date'] = pd.to_datetime(self.data['Expiry_Date'])
         self.data = self.data.sort_values(by =["Expiry_Date"],ascending = True)
         print(self.data)
         print("\n1: Add item\n2: Delete item\n3: Exit\n")
+
+        expired = [] 
+        expired_count = 0 
+        for index, dates  in self.data["Expiry_Date"].iteritems():
+            if dates.date() < datetime.date.today():
+                expired_count += 1
+                expired.append(self.data.at[index,"Name"])
+        
+        if expired_count != 0:
+            print("The following items have expired:")
+            print(expired[:])
+
         option = int(input("Enter Option: ")) 
 
         if option == 1:
