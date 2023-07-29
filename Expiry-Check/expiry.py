@@ -17,7 +17,7 @@ class expiry():
         m = int(input("Enter month of expiry: "))
         d = int(input("Enter day of expiry: "))
 
-        self.data = self.data.append({"Name":name, "Expiry_Date":datetime.datetime(y,m,d)},ignore_index = True)
+        self.data = self.data.append({"Name":name, "Expiry_Date":datetime.datetime(y,m,d).date()},ignore_index = True)
         self.data.to_csv("data.csv",index=False)
         self.display()
 
@@ -31,6 +31,8 @@ class expiry():
     
     def display(self):
         print("Here are the following items that need to be used, in order.\n")
+        self.data['Expiry_Date'] = pd.to_datetime(self.data['Expiry_Date'])
+        self.data = self.data.sort_values(by =["Expiry_Date"],ascending = True)
         print(self.data)
         print("\n1: Add item\n2: Delete item\n3: Exit\n")
         option = int(input("Enter Option: ")) 
