@@ -18,7 +18,7 @@ class database():
 
     def delete(self, name):
         with self.connection: 
-            self.connection.execute("DELETE FROM expiry_data WHERE name == name;", (name))
+            self.connection.execute("DELETE FROM expiry_data WHERE name =?",(name,))
 
     def display(self):
         with self.connection:

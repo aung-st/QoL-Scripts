@@ -31,6 +31,10 @@ class main():
                 date = "-".join((year,month,day))
                 self.database.add(name,date)
                 print("Item Added: "+ name)
+            elif user_input == 3:
+                name = input("Enter name of item: ")
+                self.database.delete(name)
+                print("Item deleted")
 
             
 if __name__ == "__main__":
