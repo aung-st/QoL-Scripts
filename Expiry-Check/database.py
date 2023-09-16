@@ -22,4 +22,4 @@ class database():
 
     def display(self):
         with self.connection:
-            return self.connection.execute("SELECT * FROM expiry_data")
+            return self.connection.execute("SELECT * FROM expiry_data GROUP BY expiry_date")
