@@ -11,7 +11,7 @@ class main():
     def expiry_date_check(self,items):
         today = date.today()
         print("\n")
-        print("The current date is: ",today,)
+        print("        The current date is: ",today,)
 
         expiring_within_a_week = []
         expired = []
@@ -36,22 +36,27 @@ class main():
             print([item for item in expiring_within_a_week])
     
     def menu(self):
-        MENU_PROMPT = """\n-- La Mesa De Café --
-
+        MENU_PROMPT = """
+        ==========================================================
         Please choose one of these options:
 
         1) See all items
         2) Add a new item
         3) Delete item
         4) Exit
-        Option: \n"""
+        ==========================================================\n
+        options: """
+        
 
         while(user_input := int(input(MENU_PROMPT))) != 4:
             if user_input == 1:
                 items = self.database.display()
                 print("\n")
+                print("        List of Items")
+                print("        -----------------------")
                 for item in items:
-                    print(item)
+                    print("       ",item[1],item[2])
+                print("        -----------------------")
                 self.expiry_date_check(items)
             elif user_input == 2:
                 name = input("Enter Name of item: ")
